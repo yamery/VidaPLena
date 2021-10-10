@@ -1,0 +1,45 @@
+<div class="container-lg my-3">
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="cursoForm" (ngSubmit)="agregarCurso()" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nombreCurso" class="form-label">Nombre del Curso</label>
+                    <input type="text" class="form-control" id="nombreCurso" formControlName="nombreCurso" placeholder="Nombre del curso">
+                    <div class="text-danger" *ngIf="cursoForm.get('nombreCurso')?.hasError('required') && cursoForm.get('nombreCurso')?.touched">El nombre del curso es obligatorio</div>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion curso:</label>
+                    <textarea id="descripcion" class="form-control" formControlName="descripcion" placeholder="Descripcion"></textarea>
+                    <div class="text-danger" *ngIf="cursoForm.get('descripcion')?.hasError('required') && cursoForm.get('descripcion')?.touched">
+                        <span>Descripcion del curso es obligatoria</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="nombrePresent" class="form-label">Nombre del Presentador:</label>
+                    <input type="text" class="form-control" id="nombrePresent" formControlName="nombrePresentador" placeholder="Nombre del Presentador">
+                    <div class="text-danger" *ngIf="cursoForm.get('nombrePresentador')?.hasError('required') && cursoForm.get('nombrePresentador')?.touched">El nombre del presentador es obligatorio</div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="container">
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select id="categoria" class="form-select form-select-sm" formControlName="categoria">
+                            
+                            <option *ngFor="let categoria of categorias" value="{{categoria.value}}">{{categoria.nombre}}</option>
+    
+                          </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="acercaMentor" class="form-label">Acerca del mentor:</label>
+                    <textarea id="acercaMentor" class="form-control" formControlName="acercaMentor" placeholder="Descripcion"></textarea>
+                    <div class="text-danger" *ngIf="cursoForm.get('acercaMentor')?.hasError('required') && cursoForm.get('acercaMentor')?.touched">
+                        <span>Descripcion del mentor es obligatoria</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="cursoForm.invalid">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
